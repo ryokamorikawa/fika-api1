@@ -1,7 +1,9 @@
 package main
 
 import (
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -27,7 +29,13 @@ func main() {
 	router.GET("/albums/:id", getAlbumByID)
 	router.POST("/albums", postAlbums)
 
-	router.Run("localhost:8080")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+		log.Printf("defaulting to port %s", port)
+	}
+
+	router.Run(":" + port)
 }
 
 // getAlbums responds with the list of all albums as JSON.
