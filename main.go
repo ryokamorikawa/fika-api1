@@ -35,7 +35,7 @@ func main() {
 		log.Printf("defaulting to port %s", port)
 	}
 
-	router.Run(":" + port)
+	router.Run("0.0.0.0:" + port)
 }
 
 // getAlbums responds with the list of all albums as JSON.
